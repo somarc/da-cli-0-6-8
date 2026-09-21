@@ -3,7 +3,8 @@
  *
  * Authored contract: one row with two cells.
  *   cell 1 — eyebrow, one h1, supporting copy, and optional CTA links
- *   cell 2 — a poster-image link followed by optional .webm and .mp4 links
+ *   cell 2 — an authored poster image (preferred) or image link, followed
+ *            by optional .webm and .mp4 links
  *
  * The authored copy is always the source of meaning. Media is a decorative,
  * silent enhancement: the poster owns first paint and motion starts only when
@@ -37,10 +38,13 @@ function classifyCopy(copy) {
   }
 }
 
-function mediaLinks(cell) {
+export function mediaLinks(cell) {
   const links = cell ? [...cell.querySelectorAll('a[href]')] : [];
+  const image = cell?.querySelector('img');
   return {
-    poster: links.find((link) => IMAGE_PATTERN.test(link.href))?.href || '',
+    image,
+    poster: image?.currentSrc || image?.src
+      || links.find((link) => IMAGE_PATTERN.test(link.href))?.href || '',
     videos: links.filter((link) => VIDEO_PATTERN.test(link.href)).map((link) => link.href),
   };
 }
@@ -94,7 +98,7 @@ function makeMotionControl(video) {
   };
 }
 
-function buildMedia(poster, videoSources) {
+function buildMedia(poster, videoSources, authoredImage) {
   const stage = document.createElement('div');
   stage.className = 'painterly-hero-stage';
 
@@ -104,14 +108,18 @@ function buildMedia(poster, videoSources) {
   stage.append(wash, buildFallbackArt());
 
   if (poster) {
-    const image = document.createElement('img');
-    image.className = 'painterly-hero-poster';
-    image.src = poster;
+    // Preserve the parser-discovered image/picture and its in-flight request.
+    // The legacy link-only contract still receives a generated image.
+    const image = authoredImage || document.createElement('img');
+    image.classList.add('painterly-hero-poster');
+    if (!authoredImage) image.src = poster;
     image.alt = '';
     image.loading = 'eager';
     image.fetchPriority = 'high';
-    image.addEventListener('load', () => stage.classList.add('has-poster'), { once: true });
-    stage.append(image);
+    const showPoster = () => stage.classList.add('has-poster');
+    if (image.complete && image.naturalWidth) showPoster();
+    else image.addEventListener('load', showPoster, { once: true });
+    stage.append(image.closest('picture') || image);
   }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -172,7 +180,7 @@ export default function decorate(block) {
   const cells = [...firstRow.children];
   const copyCell = cells[0] || firstRow;
   const mediaCell = cells[1] || rows[1]?.firstElementChild;
-  const { poster, videos } = mediaLinks(mediaCell);
+  const { poster, videos, image } = mediaLinks(mediaCell);
 
   const copy = document.createElement('div');
   copy.className = 'painterly-hero-copy';
@@ -181,7 +189,7 @@ export default function decorate(block) {
 
   const frame = document.createElement('div');
   frame.className = 'painterly-hero-frame';
-  frame.append(buildMedia(poster, videos), copy);
+  frame.append(buildMedia(poster, videos, image), copy);
 
   const index = document.createElement('div');
   index.className = 'painterly-hero-index';

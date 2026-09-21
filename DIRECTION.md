@@ -15,6 +15,9 @@ a claim that the older release evidence has been recertified.
   resting state. Narrow screens (below the existing 900px desktop boundary) and
   reduced-motion visitors receive the poster without fetching a video. Wide-screen
   motion is optional enhancement. Copy, controls, and meaning stay in HTML.
+- **First paint:** the poster is an authored image, discoverable in the initial
+  HTML. Decoration moves the original picture rather than waiting to invent an
+  image after JavaScript. The inherited link-only form remains a compatibility path.
 - **Silence:** no new framework, generic AI dashboard, invented benchmark,
   mandatory QMD setup for first contact, hidden executor, or one-click migration claim.
 
