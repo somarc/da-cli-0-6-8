@@ -115,7 +115,10 @@ function buildMedia(poster, videoSources) {
   }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!videoSources.length || reducedMotion.matches) return stage;
+  // The poster is the complete experience on narrow screens. Do not fetch
+  // decorative video metadata/frames alongside mobile first-paint resources.
+  const wideViewport = window.matchMedia('(min-width: 900px)');
+  if (!videoSources.length || reducedMotion.matches || !wideViewport.matches) return stage;
 
   const video = document.createElement('video');
   video.className = 'painterly-hero-video';

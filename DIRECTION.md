@@ -12,7 +12,9 @@ a claim that the older release evidence has been recertified.
 - **Material law:** a continuous warm-paper field, dark ink, mineral-green
   accents, editorial headings, and honest source/delivery examples.
 - **Motion:** inherited decorative operations-garden film; its poster is a complete
-  resting state. Copy, controls, and meaning stay in HTML.
+  resting state. Narrow screens (below the existing 900px desktop boundary) and
+  reduced-motion visitors receive the poster without fetching a video. Wide-screen
+  motion is optional enhancement. Copy, controls, and meaning stay in HTML.
 - **Silence:** no new framework, generic AI dashboard, invented benchmark,
   mandatory QMD setup for first contact, hidden executor, or one-click migration claim.
 
