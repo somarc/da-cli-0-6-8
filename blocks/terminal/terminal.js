@@ -46,11 +46,24 @@ function isPromptText(text) {
 }
 
 function stripDollar(nodes) {
-  const [first, ...rest] = nodes;
-  if (first && first.nodeType === Node.TEXT_NODE) {
-    return [document.createTextNode(first.textContent.replace(/^\s*\$\s?/, '')), ...rest];
+  const fragment = document.createDocumentFragment();
+  fragment.append(...nodes);
+  const walker = document.createTreeWalker(fragment, NodeFilter.SHOW_TEXT);
+  let text = walker.nextNode();
+  while (text && !text.textContent.trim()) text = walker.nextNode();
+  if (text) {
+    text.textContent = text.textContent.replace(/^\s*\$\s?/, '');
   }
-  return nodes;
+  return [...fragment.childNodes];
+}
+
+export function copyText(body) {
+  if (body.childElementCount === 1 && body.firstElementChild.tagName === 'PRE') {
+    return body.firstElementChild.textContent;
+  }
+  const commands = [...body.querySelectorAll('.terminal-command')];
+  return (commands.length ? commands : [...body.children])
+    .map((element) => element.textContent).join('\n');
 }
 
 function buildTitlebar(text) {
@@ -124,14 +137,14 @@ export default function decorate(block) {
   body.className = 'terminal-body';
 
   rows.forEach((row) => {
-    const cell = row.children[0];
-    if (!cell) return;
-    const pre = cell.querySelector('pre');
-    if (pre && cell.children.length === 1 && cell.firstElementChild === pre) {
-      body.append(pre);
-      return;
-    }
-    linesFromCell(cell).forEach((nodes) => body.append(buildLine(nodes)));
+    [...row.children].forEach((cell) => {
+      const pre = cell.querySelector('pre');
+      if (pre && cell.children.length === 1 && cell.firstElementChild === pre) {
+        body.append(pre);
+        return;
+      }
+      linesFromCell(cell).forEach((nodes) => body.append(buildLine(nodes)));
+    });
   });
 
   block.replaceChildren();
@@ -147,12 +160,8 @@ export default function decorate(block) {
     status.className = 'terminal-copy-status';
     status.setAttribute('role', 'status');
     button.addEventListener('click', async () => {
-      const commands = [...body.querySelectorAll('.terminal-command')];
-      const payload = commands.length
-        ? commands.map((command) => command.textContent).join('\n')
-        : body.textContent.trim();
       try {
-        await navigator.clipboard.writeText(payload);
+        await navigator.clipboard.writeText(copyText(body));
         [, status.textContent] = copyLabels;
       } catch {
         [, , status.textContent] = copyLabels;
