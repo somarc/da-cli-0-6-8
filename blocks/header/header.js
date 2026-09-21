@@ -74,8 +74,10 @@ function toggleAllNavSections(sections, expanded = false) {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
+  const nextExpanded = !expanded;
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  nav.setAttribute('aria-expanded', String(nextExpanded));
+  button.setAttribute('aria-expanded', String(nextExpanded));
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
@@ -108,6 +110,22 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+// release badge for the masthead — code-side, not authored per row/cell
+const RELEASE_VERSION = '0.6.8 preview';
+
+function normalizePath(pathname) {
+  return pathname.replace(/\/index(?:\.html)?$/, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+}
+
+function markCurrentLink(nav) {
+  const current = normalizePath(window.location.pathname);
+  nav.querySelectorAll('a[href]').forEach((link) => {
+    const path = normalizePath(new URL(link.href, window.location.href).pathname);
+    const referenceParent = path === '/reference' && current.startsWith('/reference/');
+    if (path === current || referenceParent) link.setAttribute('aria-current', 'page');
+  });
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -117,6 +135,7 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
+  if (!fragment) return;
 
   // decorate nav DOM
   block.textContent = '';
@@ -131,14 +150,24 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand) {
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      const brandWrapper = brandLink.closest('.button-container, .button-wrapper');
+      if (brandWrapper) brandWrapper.className = '';
+    }
+
+    // stamped release chip — a printed receipt always carries a version
+    const versionChip = document.createElement('span');
+    versionChip.className = 'chip chip-accent nav-version';
+    versionChip.textContent = RELEASE_VERSION;
+    navBrand.append(versionChip);
   }
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    navSections.id = 'nav-sections';
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
@@ -151,10 +180,12 @@ export default async function decorate(block) {
     });
   }
 
+  markCurrentLink(nav);
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
+  hamburger.innerHTML = `<button type="button" aria-controls="nav-sections" aria-expanded="false" aria-label="Open navigation">
       <span class="nav-hamburger-icon"></span>
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));

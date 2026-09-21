@@ -1,0 +1,71 @@
+.case-file {
+  border-block-start: 2px solid var(--ink);
+}
+
+.case-file details {
+  border: var(--hairline) solid var(--rule);
+  border-block-start: 0;
+  background: var(--paper-deep);
+}
+
+.case-file summary {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr) 1.5rem;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  min-block-size: 4.75rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  list-style: none;
+  cursor: pointer;
+}
+
+.case-file summary::-webkit-details-marker {
+  display: none;
+}
+
+.case-file summary :is(h2, h3, h4) {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.6vw, 1.375rem);
+}
+
+.case-file :is(.case-file-number, .case-file-toggle) {
+  font-family: var(--mono-font-family);
+  color: var(--ink-soft);
+}
+
+.case-file .case-file-toggle {
+  justify-self: end;
+  font-size: 1.5rem;
+}
+
+.case-file details[open] {
+  background: var(--paper);
+  border-inline-start: 3px solid var(--moss);
+}
+
+.case-file details[open] .case-file-toggle {
+  transform: rotate(45deg);
+}
+
+.case-file summary:is(:hover, :focus-visible) {
+  color: var(--accent-deep);
+  background: var(--moss-tint);
+}
+
+.case-file summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+
+.case-file .case-file-notes {
+  padding: 0 clamp(1rem, 2.5vw, 1.5rem) 1.5rem;
+  max-inline-size: 70rem;
+}
+
+.case-file .case-file-notes > :first-child {
+  margin-block-start: 0;
+}
+
+.case-file .case-file-notes > :last-child {
+  margin-block-end: 0;
+}

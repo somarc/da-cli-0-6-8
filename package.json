@@ -1,24 +1,26 @@
 {
-  "name": "@adobe/aem-boilerplate",
+  "name": "da-cli-0-6-8",
   "private": true,
-  "version": "1.3.0",
-  "description": "Starter project for Adobe Helix",
+  "version": "0.1.0",
+  "description": "Outcome-led da-cli site and first-use guide, prepared ahead of 0.6.8",
   "scripts": {
     "lint:js": "eslint .",
     "lint:css": "stylelint \"blocks/**/*.css\" \"styles/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
+    "test": "node --test test/*.test.mjs",
+    "check": "npm run lint && npm test",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adobe/aem-boilerplate.git"
+    "url": "git+https://github.com/somarc/da-cli-0-6-8.git"
   },
-  "author": "Adobe",
+  "author": "somarc",
   "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/adobe/aem-boilerplate/issues"
+    "url": "https://github.com/somarc/da-cli-0-6-8/issues"
   },
-  "homepage": "https://github.com/adobe/aem-boilerplate#readme",
+  "homepage": "https://feat-0-6-8-adoption-site--da-cli-0-6-8--somarc.aem.page/",
   "devDependencies": {
     "@babel/eslint-parser": "7.29.9",
     "eslint": "8.57.1",
