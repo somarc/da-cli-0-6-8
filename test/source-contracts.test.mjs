@@ -24,7 +24,7 @@ test('case files and copying are additive, native, and non-executing', async () 
 
 test('the checkout contains no authored page or old reference corpus', async () => {
   const root = await readdir(new URL('../', import.meta.url));
-  for (const forbidden of ['index.html', 'getting-started.html', 'examples.html', 'nav.html', 'footer.html', 'data', 'drafts']) {
+  for (const forbidden of ['index.html', 'getting-started.html', 'examples.html', 'how-we-build.html', 'nav.html', 'footer.html', 'data', 'drafts']) {
     assert.equal(root.includes(forbidden), false, forbidden);
   }
 });

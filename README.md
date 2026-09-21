@@ -21,7 +21,8 @@ aem up --url https://feat-0-6-8-adoption-site--da-cli-0-6-8--somarc.aem.page/
 ```
 
 The official AEM CLI serves local implementation with previewed DA content.
-DA is the source of truth for Home, Get started, Examples, navigation, and footer.
+DA is the source of truth for Home, Get started, Examples, the signature
+How we build page, navigation, and footer.
 Use da-cli and its resolved external operational workspace for content operations;
 keep QMD enabled for the learning trail. Do not commit authored page fixtures.
 
