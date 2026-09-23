@@ -191,10 +191,15 @@ export default function decorate(block) {
   frame.className = 'painterly-hero-frame';
   frame.append(buildMedia(poster, videos, image), copy);
 
+  block.replaceChildren(frame);
+  // The method page owns its learning stages in the authored flywheel below.
+  // Do not introduce a second, competing decorative sequence in its hero.
+  if (block.classList.contains('fieldwork')) return;
+
   const index = document.createElement('div');
   index.className = 'painterly-hero-index';
   index.setAttribute('aria-hidden', 'true');
   index.innerHTML = '<span>ASK</span><span>INSPECT</span><span>CHANGE</span><span>PREVIEW</span><span>CHECK</span><span>CONTINUE</span>';
 
-  block.replaceChildren(frame, index);
+  block.append(index);
 }

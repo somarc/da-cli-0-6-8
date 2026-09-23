@@ -26,7 +26,7 @@ indexed manila case files, precise annotations, and useful depth behind a plain
 front door. This is atmosphere, not fake secrecy. Native disclosures open the
 case notes; examples remain attributable and the first-use path stays obvious.
 
-## Three visitor questions
+## Four visitor questions
 
 1. **Home:** What is this, and what could I do with it?
 2. **Get started:** What do I need, and what do I ask my agent first?
@@ -65,3 +65,53 @@ success/failure feedback. Missing labels omit the control, not the content.
 
 All new source work is on a feature branch. Shared preview is permitted; live
 publication and changes to the ALC sizzle site require separate approval.
+
+## Flywheel story — 0.6.8 refinement
+
+The approved house stays intact. `/how-we-build` makes its subject more specific:
+**a site teaches the next site**. Sustained dogfooding, unsuccessful attempts,
+useful safety stops, reviewed fixes, and repeat use are the story—not an
+autonomous AI platform and not an inventory of commands.
+
+- **Custom object:** a manila revision wheel, indexed by the actual authored
+  steps. Grok Imagine supplies the tactile still life; native HTML and SVG own
+  exact labels, relationships, evidence, and interaction.
+- **Law:** every turn leaves something for the next pass. Selecting a native
+  disclosure brings one numbered leaf into focus; nothing spins continuously.
+- **Inherit:** the paper/ink/mineral-green palette, editorial type, section
+  widths, prose rhythm, native scrolling, and parser-discoverable hero image.
+  The method page's `fieldwork` theme omits the inherited decorative pillar
+  gutters; the shared typography and section system stay unchanged.
+- **Refuse:** a dashboard of equal cards, fake terminal activity, AI brains,
+  gears, invented metrics, pseudo-text inside images, and WebGL-only first paint.
+- **Composition:** one still-led opening, one interactive revision wheel, an
+  asymmetric field-note spread, two concrete cases, and a small authored stamp.
+  On narrow screens the method hero gives the still life a separate shallow
+  stage instead of cropping it behind the copy. Its inherited operational index
+  is omitted: the authored flywheel is the sole numbered learning sequence.
+- **Proof boundary:** the daily reader exists. Independent harvester product
+  ownership and fix-to-comparable-field-evidence linkage are directions still
+  being built. A merged fix is not field proof and a refusal is not automatically
+  friction. Keep those qualifications near the relevant evidence, not as a wall
+  of caveats at the front door.
+- **Stamp boundary:** this site demonstrates the authored calling card and method
+  page in preview. Automatic provisioning onto future da-cli sites is a separate
+  CLI feature. The workflow must never activate that stamp/page on live delivery;
+  hiding it with CSS would not enforce that boundary.
+
+### Reference check
+
+Scout: 2026-09-23. Warm-paper foundation already approved; no new whole-site
+aesthetic selection. The useful references are laws, not assets to reproduce:
+
+- [Ceramic Beats](https://thefwa.com/cases/ceramicbeats): make an actual collection
+  the interaction, rather than simulate work.
+- [The Design Society](https://thefwa.com/cases/the-design-society): editorial
+  specificity makes a practice legible.
+- [Other Means](https://othermeans.us/): printed matter as a coherent graphic
+  system rather than repeated component cards (reference date unknown).
+
+Fresh X evidence was unavailable; no social-trend claim is made. The sibling
+comparison is against the inherited 0.6.6 recipe: retain the shared foundation,
+but do not simply reuse its garden film, dual-form specimens, and card sequence
+as the new signature story. The revision wheel must carry the new identity.

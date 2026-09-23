@@ -183,6 +183,14 @@ h6 {
   scroll-margin: 40px;
 }
 
+/* Below the existing desktop boundary the masthead is fixed. Anchor targets
+   must clear that actual navigation height rather than the desktop offset. */
+@media (width < 56.25em) {
+  :is(h1, h2, h3, h4, h5, h6) {
+    scroll-margin-block-start: calc(var(--nav-height) + var(--space-s));
+  }
+}
+
 h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
