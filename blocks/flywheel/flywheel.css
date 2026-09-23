@@ -1,0 +1,224 @@
+.flywheel {
+  container-type: inline-size;
+  border-block: var(--hairline) solid var(--rule);
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+.flywheel .flywheel-layout {
+  display: grid;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.flywheel .flywheel-art {
+  inline-size: min(100%, 30rem);
+  justify-self: center;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--paper-deep) 0 39%, transparent 40%);
+}
+
+.flywheel .flywheel-art svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+.flywheel :is(.flywheel-rim, .flywheel-ticks, .flywheel-track, .flywheel-hub-ring) {
+  fill: none;
+  stroke: var(--rule);
+}
+
+.flywheel .flywheel-rim {
+  stroke-width: 1;
+}
+
+.flywheel .flywheel-ticks {
+  stroke-width: 5;
+  stroke-dasharray: 1 10;
+}
+
+.flywheel .flywheel-track {
+  stroke: var(--moss);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 7;
+}
+
+.flywheel .flywheel-return {
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 2;
+}
+
+.flywheel .flywheel-paper {
+  fill: var(--paper-deep);
+  stroke: var(--ink-soft);
+  stroke-width: 1;
+  filter: drop-shadow(2px 4px 0 var(--paper-line));
+}
+
+.flywheel .flywheel-paper-rule {
+  stroke: var(--rule);
+}
+
+.flywheel .flywheel-leaf text {
+  fill: var(--ink);
+  font: 500 1.4375rem var(--mono-font-family);
+}
+
+.flywheel .flywheel-leaf.is-current .flywheel-paper {
+  fill: var(--moss);
+  stroke: var(--moss);
+  filter: drop-shadow(3px 5px 0 var(--lichen));
+}
+
+.flywheel .flywheel-leaf.is-current text {
+  fill: var(--paper);
+}
+
+.flywheel .flywheel-leaf.is-current .flywheel-paper-rule {
+  stroke: var(--lichen);
+}
+
+.flywheel .flywheel-hub-ring {
+  stroke-dasharray: 2 5;
+}
+
+.flywheel .flywheel-hub {
+  fill: var(--ink);
+}
+
+.flywheel .flywheel-current {
+  fill: var(--paper);
+  font: 500 4.0625rem var(--display-font-family);
+}
+
+.flywheel .flywheel-total {
+  fill: var(--lichen);
+  font: 400 0.75rem var(--mono-font-family);
+}
+
+.flywheel .flywheel-steps {
+  display: grid;
+  gap: 0.5rem;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flywheel .flywheel-steps > li {
+  min-inline-size: 0;
+}
+
+.flywheel details {
+  border: var(--hairline) solid var(--rule);
+  background: var(--paper);
+  box-shadow: 0.2rem 0.25rem 0 var(--paper-line);
+}
+
+.flywheel details[open] {
+  border-inline-start: 4px solid var(--moss);
+  background: color-mix(in oklab, var(--paper) 85%, var(--lichen));
+}
+
+.flywheel summary {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr) 1rem;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  align-items: center;
+  min-block-size: 3.75rem;
+  padding: 0.85rem 1rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.flywheel summary::-webkit-details-marker {
+  display: none;
+}
+
+.flywheel summary :is(h2, h3, h4) {
+  margin: 0;
+  color: inherit;
+  font-family: var(--body-font-family);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.flywheel :is(.flywheel-number, .flywheel-toggle) {
+  color: var(--moss);
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
+}
+
+.flywheel .flywheel-toggle {
+  justify-self: end;
+  font-size: 1.25rem;
+  transition: transform 160ms ease;
+}
+
+.flywheel details[open] .flywheel-toggle {
+  transform: rotate(45deg);
+}
+
+.flywheel summary:is(:hover, :focus-visible) {
+  background: var(--moss-tint);
+}
+
+.flywheel summary:focus-visible {
+  outline-offset: -4px;
+}
+
+.flywheel .flywheel-notes {
+  padding: 0 1rem 1.2rem;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.flywheel .flywheel-notes > :first-child {
+  margin-block-start: 0;
+}
+
+.flywheel .flywheel-notes > :last-child {
+  margin-block-end: 0;
+}
+
+@container (width >= 48rem) {
+  .flywheel .flywheel-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flywheel .flywheel-toggle {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .flywheel :is(.flywheel-art, .flywheel-toggle) {
+    display: none;
+  }
+
+  .flywheel .flywheel-layout {
+    display: block;
+  }
+
+  .flywheel details {
+    box-shadow: none;
+  }
+
+  .flywheel summary {
+    display: list-item;
+    list-style: disclosure-closed inside;
+  }
+
+  .flywheel details[open] summary {
+    list-style-type: disclosure-open;
+  }
+
+  .flywheel summary :is(h2, h3, h4) {
+    display: inline;
+  }
+}

@@ -1,0 +1,38 @@
+.evidence-links .evidence-links-row {
+  padding-block: 1rem;
+  border-block-start: var(--hairline) solid var(--rule);
+}
+
+.evidence-links .evidence-links-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-block-size: 2.75rem;
+  max-inline-size: 100%;
+  font-weight: 500;
+}
+
+.evidence-links .evidence-links-link p {
+  margin: 0;
+}
+
+.evidence-links .evidence-links-link > span {
+  flex-shrink: 0;
+}
+
+.evidence-links .evidence-links-destination {
+  color: var(--ink-dim);
+  font-family: var(--mono-font-family);
+  font-size: 0.75rem;
+}
+
+.evidence-links .evidence-links-destination p {
+  margin-block-start: 0.15rem;
+}
+
+.evidence-links .evidence-links-destination code {
+  padding: 0;
+  background: none;
+  overflow-wrap: anywhere;
+}
