@@ -86,6 +86,9 @@ autonomous AI platform and not an inventory of commands.
   gears, invented metrics, pseudo-text inside images, and WebGL-only first paint.
 - **Composition:** one still-led opening, one interactive revision wheel, an
   asymmetric field-note spread, two concrete cases, and a small authored stamp.
+  On narrow screens the method hero gives the still life a separate shallow
+  stage instead of cropping it behind the copy. Its inherited operational index
+  is omitted: the authored flywheel is the sole numbered learning sequence.
 - **Proof boundary:** the daily reader exists. Independent harvester product
   ownership and fix-to-comparable-field-evidence linkage are directions still
   being built. A merged fix is not field proof and a refusal is not automatically

@@ -331,6 +331,34 @@
   }
 }
 
+/* A wide still life needs its own shallow stage on a narrow screen; cropping
+   it behind a viewport-tall text overlay loses the revision-wheel subject. */
+@media (width < 43.75em) {
+  .painterly-hero.fieldwork {
+    min-height: 0;
+  }
+
+  .painterly-hero.fieldwork .painterly-hero-stage {
+    position: relative;
+    grid-area: 1 / 1;
+    inset: auto;
+    aspect-ratio: 5 / 4;
+  }
+
+  .painterly-hero.fieldwork .painterly-hero-stage::after {
+    background: linear-gradient(0deg, var(--paper), transparent 22%);
+  }
+
+  .painterly-hero.fieldwork .painterly-hero-poster {
+    object-position: right center;
+  }
+
+  .painterly-hero.fieldwork .painterly-hero-copy {
+    grid-area: 2 / 1;
+    padding-block: var(--space-m) var(--space-l);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .painterly-hero-poster,
   .painterly-hero-video {
