@@ -1,47 +1,45 @@
 .callout {
-  position: relative;
-  padding: var(--space-m) var(--space-m) var(--space-m) calc(var(--space-m) + 3px);
-  border-left: 3px solid var(--stamp-red);
+  display: grid;
+  gap: var(--space-s) var(--space-m);
+  align-items: start;
+  padding: var(--space-m);
+  border-inline-start: 3px solid var(--stamp-red);
   background-color: var(--paper-deep);
 }
 
-.callout-stamp {
-  display: inline-block;
-  margin-bottom: var(--space-s);
+.callout .callout-stamp {
+  justify-self: start;
+  max-inline-size: 100%;
+  min-inline-size: 0;
   border: 2px solid var(--stamp-red);
   border-radius: var(--radius-s);
   padding: 0.25em 0.7em;
   font-family: var(--mono-font-family);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
   color: var(--stamp-red);
   transform: rotate(-2deg);
 }
 
-.callout-body {
+.callout .callout-body {
+  min-inline-size: 0;
   color: var(--ink);
 }
 
-.callout-body > :first-child {
+.callout .callout-body > :first-child {
   margin-top: 0;
 }
 
-.callout-body > :last-child {
+.callout .callout-body > :last-child {
   margin-bottom: 0;
 }
 
-@media (width >= 600px) {
+@media (width >= 37.5em) {
   .callout {
-    padding-left: 148px;
-    min-height: 64px;
-  }
-
-  .callout-stamp {
-    position: absolute;
-    top: var(--space-m);
-    left: var(--space-m);
-    margin-bottom: 0;
+    /* The authored stamp owns its width; a fixed sidebar clips longer labels. */
+    grid-template-columns: fit-content(35%) minmax(0, 1fr);
   }
 }
