@@ -3,5 +3,5 @@ Please always provide the [GitHub issue(s)](../issues) your PR is for, as well a
 Fix #<gh-issue-id>
 
 Test URLs:
-- Before: https://main--da-cli-0-6-8--somarc.aem.live/
-- After: https://<branch>--da-cli-0-6-8--somarc.aem.live/
+- Before: https://main--da-cli-0-6-8--somarc.aem.page/
+- After: https://<branch>--da-cli-0-6-8--somarc.aem.page/

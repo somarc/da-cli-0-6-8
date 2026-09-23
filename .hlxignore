@@ -5,4 +5,7 @@ LICENSE
 package.json
 package-lock.json
 test/*
+tests/*
+tools/*
+THIRD_PARTY_NOTICES.md
 sync-block-collection.sh

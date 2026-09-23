@@ -1,34 +1,35 @@
-# Your Project's Title...
-Your project's description...
+# da-cli · 0.6.8 site preview
+
+A visitor-first introduction to building, evolving, and troubleshooting
+DA-backed AEM Edge Delivery sites with a coding agent.
 
 ## Environments
-- Preview: https://main--da-cli-0-6-8--somarc.aem.page/
-- Live: https://main--da-cli-0-6-8--somarc.aem.live/
 
-## Documentation
+- [Working preview](https://feat-0-6-8-adoption-site--da-cli-0-6-8--somarc.aem.page/)
+- [DA content](https://da.live/#/somarc/da-cli-0-6-8)
+- Public CLI package: `@somarc/da-cli@0.6.7`
 
-Before using the aem-boilerplate, we recommand you to go through the documentation on https://www.aem.live/docs/ and more specifically:
-1. [Developer Tutorial](https://www.aem.live/developer/tutorial)
-2. [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
-3. [Web Performance](https://www.aem.live/developer/keeping-it-100)
-4. [Markup, Sections, Blocks, and Auto Blocking](https://www.aem.live/developer/markup-sections-blocks)
+The site is being prepared ahead of 0.6.8. It is not a released CLI or a frozen
+release-proof site, and this development scope does not publish to live.
 
-## Installation
+## Development
 
 ```sh
-npm i
+npm ci
+npm run check
+aem up --url https://feat-0-6-8-adoption-site--da-cli-0-6-8--somarc.aem.page/
 ```
 
-## Linting
+The official AEM CLI serves local implementation with previewed DA content.
+DA is the source of truth for Home, Get started, Examples, the signature
+How we build page, navigation, and footer.
+Use da-cli and its resolved external operational workspace for content operations;
+keep QMD enabled for the learning trail. Do not commit authored page fixtures.
 
-```sh
-npm run lint
-```
+## Foundation
 
-## Local development
-
-1. Create a new repository based on the `aem-boilerplate` template
-1. Add the [AEM Code Sync GitHub App](https://github.com/apps/aem-code-sync) to the repository
-1. Install the [AEM CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/aem-cli`
-1. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
-1. Open the `da-cli-0-6-8` directory in your favorite IDE and start coding :)
+Selected presentation blocks, fonts, styles, and design assets are reused from
+`somarc/da-cli-0-6-6@e60deaf3590dacbf1c7d03a4c2be6b0ad9a79010`.
+The new repository's vendored `scripts/aem.js` remains unchanged.
+No older command-reference data, authored pages, or release evidence is copied.
+See [DIRECTION.md](DIRECTION.md) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
