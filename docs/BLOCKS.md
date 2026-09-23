@@ -28,9 +28,9 @@ claimed without checking the actual editor.
 
 Each row is an authored image cell followed by rich text. An optional caption
 stays with the media. Extra cells are retained within the text cell. Rows without
-the required image/text shape remain unchanged. The original image and its alt
-text survive; below-fold images load lazily. This block is static and owns only
-its internal editorial spread.
+the required image/text shape remain unchanged. The original image, its alt text,
+and any explicit loading choice survive; otherwise images default to lazy loading.
+This block is static and owns only its internal editorial spread.
 
 ## Evidence links
 

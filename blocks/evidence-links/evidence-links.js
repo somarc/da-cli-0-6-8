@@ -19,7 +19,7 @@ export default function decorate(block) {
     const code = destination?.querySelector('code');
     const url = code && evidenceUrl(code.textContent);
     if (!url || destination.querySelectorAll('code').length !== 1 || destination.querySelector('a')
-      || !label?.textContent.trim() || label.querySelector('a, button, input, select, textarea')) return;
+      || !label?.textContent.trim() || label.querySelector('a, button, input, select, textarea, summary, [contenteditable], [tabindex]')) return;
     const link = document.createElement('a');
     link.className = 'evidence-links-link';
     link.href = url;

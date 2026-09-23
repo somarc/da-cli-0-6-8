@@ -50,6 +50,22 @@ test('flywheel retains malformed rows without unnamed disclosures', () => {
   assert.equal(block.querySelectorAll('details').length, 0);
 });
 
+test('flywheel keeps stray label text and interactive or focusable headings unchanged', () => {
+  for (const label of [
+    '<h3>Label</h3>stray author text',
+    '<h3><select><option>Choose</option></select></h3>',
+    '<h3><textarea>Editable</textarea></h3>',
+    '<h3 contenteditable="true">Editable label</h3>',
+    '<h3><span tabindex="0">Focusable label</span></h3>',
+  ]) {
+    const { block } = fixture('flywheel', `<div><div>${label}</div><div>Retained notes</div></div>`);
+    const before = block.innerHTML;
+    decorateFlywheel(block);
+    assert.equal(block.innerHTML, before);
+    assert.equal(block.querySelectorAll('summary').length, 0);
+  }
+});
+
 test('flywheel handles sparse and added rows and isolates each native disclosure group', () => {
   const rows = Array.from({ length: 8 }, (_, index) => `<div><div><h3>Label ${index}</h3></div><div>Notes ${index}</div></div>`).join('');
   const { block, document } = fixture('flywheel', rows);
@@ -102,6 +118,12 @@ test('field story leaves missing image or copy shapes unchanged', () => {
   assert.equal(block.innerHTML, before);
 });
 
+test('field story does not demote an explicitly eager authored image', () => {
+  const { block } = fixture('field-story', '<div><div><img src="/test.webp" alt="Authored" loading="eager"></div><div>Copy</div></div>');
+  decorateFieldStory(block);
+  assert.equal(block.querySelector('img').getAttribute('loading'), 'eager');
+});
+
 test('evidence URLs accept explicit HTTPS and refuse ambiguous or unsafe destinations', () => {
   assert.equal(evidenceUrl(' https://main--another-site--example.aem.page/case?view=1#proof '), 'https://main--another-site--example.aem.page/case?view=1#proof');
   for (const value of ['', '/case', '//example.test/case', 'javascript:alert(1)', 'data:text/html,no', 'http://example.test', 'https://user:password@example.test']) {
@@ -131,6 +153,7 @@ test('evidence links refuse nested interactions, multiple URLs and already ancho
     '<div><div>Multiple</div><div><code>https://example.test/</code><code>https://other.test/</code></div></div>',
     '<div><div>Anchored</div><div><a href="/rewritten"><code>https://example.test/</code></a></div></div>',
     '<div><div>Bad scheme</div><div><code>javascript:alert(1)</code></div></div>',
+    '<div><div><span tabindex="0">Focusable label</span></div><div><code>https://example.test/</code></div></div>',
   ]) {
     const { block } = fixture('evidence-links', row);
     const before = block.innerHTML;

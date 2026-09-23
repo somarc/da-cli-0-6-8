@@ -11,7 +11,7 @@ export default function decorate(block) {
     row.classList.add('field-story-spread');
     media.classList.add('field-story-media');
     copy.classList.add('field-story-copy');
-    image.loading = 'lazy';
+    if (!image.hasAttribute('loading')) image.loading = 'lazy';
     extra.forEach((cell) => {
       copy.append(...cell.childNodes);
       cell.remove();

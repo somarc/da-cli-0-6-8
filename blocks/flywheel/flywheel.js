@@ -84,8 +84,10 @@ export default function decorate(block) {
   const candidates = rows.filter((row) => {
     const [label, notes] = row.children;
     const heading = label?.firstElementChild;
-    return heading?.matches('h2, h3, h4') && heading.textContent.trim()
-      && label.children.length === 1 && !label.querySelector('a, button, input') && notes;
+    if (!heading?.matches('h2, h3, h4') || !heading.textContent.trim() || !notes) return false;
+    const headingOnly = [...label.childNodes].every((node) => node === heading
+      || (node.nodeType === 3 && !node.textContent.trim()));
+    return headingOnly && !label.querySelector('a, button, input, select, textarea, summary, [contenteditable], [tabindex]');
   });
   if (!candidates.length) return;
 
