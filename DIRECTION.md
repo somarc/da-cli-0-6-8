@@ -80,6 +80,8 @@ autonomous AI platform and not an inventory of commands.
   disclosure brings one numbered leaf into focus; nothing spins continuously.
 - **Inherit:** the paper/ink/mineral-green palette, editorial type, section
   widths, prose rhythm, native scrolling, and parser-discoverable hero image.
+  The method page's `fieldwork` theme omits the inherited decorative pillar
+  gutters; the shared typography and section system stay unchanged.
 - **Refuse:** a dashboard of equal cards, fake terminal activity, AI brains,
   gears, invented metrics, pseudo-text inside images, and WebGL-only first paint.
 - **Composition:** one still-led opening, one interactive revision wheel, an

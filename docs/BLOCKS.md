@@ -53,4 +53,5 @@ the canonical source or a new da-cli capability.
 destination is supplied by the site, not an external script or runtime payload.
 The DA write/preview workflow—not client-side hiding—owns the preview-only
 publication boundary. Automatic provisioning by da-cli requires its own CLI
-contract and tests; this site must not claim that feature is already shipped.
+contract and tests, tracked in [da-cli #346](https://github.com/somarc/da-cli/issues/346);
+this site must not claim that feature is already shipped.
